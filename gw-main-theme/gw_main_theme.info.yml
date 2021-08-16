@@ -1,0 +1,38 @@
+name: GW Main Theme
+type: theme
+description: George Washington University Main Theme
+base theme: particle
+core_version_requirement: ^8 || ^9
+regions:
+  utility: 'Utility'
+  alert: 'Alerts'
+  page_above: 'Header'
+  navigation: 'Navigation'
+  navigation_collapsible: 'Navigation (Collapsible)'
+  header: 'Top Bar'
+  hero_slider: 'Media Hero Slider'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  primary_menu: 'Left Primary Menu'
+  sidebar_first: 'Primary'
+  sidebar_second: 'Secondary'
+  footer: 'Footer'
+  global_footer: 'Global Footer'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+dependencies:
+  - gwu_blocks
+
+# Global libraries applied to every page.
+libraries:
+  - gw_main_theme/global-styling
+  - gw_main_theme/global-scripts
+
+# CkEditor Styles.
+ckeditor_stylesheets:
+  - css/gw-ckeditor.styles.css
+
+  # CkEditor Styles.
+ckeditor_javascript:
+  - js/gw-ckeditor.helper-styles.js

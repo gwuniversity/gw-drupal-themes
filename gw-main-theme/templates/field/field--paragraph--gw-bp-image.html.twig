@@ -1,0 +1,195 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ * @see template_preprocess_field()
+ */
+#}
+
+<style>
+
+  {% if slide_count == 1 %}
+    /* Hide carosel-indicators if there's only one slide */
+    .carousel-indicators {
+      display: none;
+    }
+  {% endif %}
+
+h2.advancedHeroTitle{
+  font-family: 'AvenirNext-Light',Helvetica,Arial,sans-serif;
+  margin-bottom: 0;
+  font-size: 2rem;
+  color: #fff;
+}
+
+p.hero-link {
+  padding-top: 1rem;
+}
+
+p.hero-link a {
+  color: #fff;
+}
+
+p.hero-link a:hover, p.hero-link a:focus{
+ text-decoration: none;
+ border-bottom: 1px dashed #fff;
+}
+
+p.hero-description {
+  font-family: 'AvenirNext-Light',Helvetica,Arial,sans-serif;
+  color: #fff;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+.hero-link svg.svg-inline--fa {
+ color: #fff;
+ margin-left: .4rem;
+ margin-bottom: -.1rem;
+}
+.carousel-indicators {
+    position: absolute;
+    right: 0;
+    bottom: 11px;
+    width: 20%;
+    margin: auto;
+}
+
+/* Container holding the image and the text */
+.bp-image-container {
+  text-align:center;
+  position: relative;
+  width: 100%;
+  padding-bottom: 3rem;
+}
+
+/* Image container background color */
+.bp-image-container-bg {
+  position: absolute;
+  bottom: 0;
+  width:100%;
+}
+
+/* Centered text */
+.bp-image-text-centered {
+  position: absolute;
+  bottom: 0;
+  left:0;
+  width: 100%;
+  padding: 1rem 6rem;
+  text-align: left;
+  background: rgb(3 60 90 / 85%);
+}
+
+/* Bottom left text */
+.bp-image-text-bottom-left {
+position: absolute;
+bottom: 0;
+left: 0;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+height: 50rem;
+color: #fff;
+width: 40%;
+text-align: left;
+padding: 0 2rem .7rem 2rem;
+background: rgb(3 60 90 / 85%); 
+}
+
+{# .bp-image-color-bg {
+  background: rgb(3 60 90 / 85%);
+  height: 36rem;
+  top: -530px;
+  position: relative;
+  width: 40%;
+} #}
+
+/* Bottom right text */
+.bp-image-text-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 50rem;
+  color: #fff;
+  width: 40%;
+  text-align: left;
+  padding: 0 2rem .7rem 2rem;
+  background: rgb(3 60 90 / 85%);
+}
+.bp-image-text-bottom-right .hero-link{
+ margin-left: 0;
+}
+
+{# .bp-image-text-bottom-right .hero-link svg{
+  transform: scaleX(-1);
+  position: absolute;
+  left: 0;
+  margin-left: 2rem;
+  margin-top: 0.3rem;
+} #}
+
+
+</style>
+
+{% set image = {
+  '#theme':      'image_style',
+  '#style_name': image_style,
+  '#uri':        image_uri,
+  '#alt':        items[0].content['#item'].value.alt,
+  '#width':      items[0].content['#item'].value.width,
+  '#height':     items[0].content['#item'].value.height
+} %}
+
+ <div class="bp-image-container">
+  {{ image }}
+  {% if info_enable and slide_size != 'gw_page_header_small' %}
+    <div class="bp-image-container-bg">
+      <div class="{{ info_alignment }}">
+        <h2 class="advancedHeroTitle">{{ image_title }}</h2>
+        <p class="hero-description">{{ image_description }}</p>
+          {% if image_link_url %}
+            <p class="hero-link">
+              <a href="{{ image_link_url }}">{{ image_link_title ? image_link_title : image_link_url }}</a>
+              <span> {{ image_link_icon|raw }} </span>
+            </p>
+           {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+

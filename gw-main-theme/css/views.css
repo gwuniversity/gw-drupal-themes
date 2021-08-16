@@ -1,0 +1,98 @@
+/* Views CSS overrides */
+
+/*
+ * Custom A-Z filter
+ */
+#edit-custom-az-filter--wrapper div {
+  display: inline-block;
+}
+/* hide the radios, link only from label */
+#edit-custom-az-filter--wrapper input {
+  display: none;
+}
+/* Checked value background */
+#edit-custom-az-filter input[type=radio]:checked + label {
+  color: white;
+  background-color: #0073aa;
+}
+/* Hover value */
+#edit-custom-az-filter label.option:hover {
+  color: var(--GW_DarkBlue)!important;
+  background-color: #d8d8d8!important;
+  font-family:"AvenirNext-Demi",Helvetica,Arial,sans-serif;
+  cursor: pointer;
+}
+
+/*
+ *Directory
+ */
+div.gw-person .nav > li > a:hover, div.gw-person .nav > li > a:focus {
+  background-color: transparent;
+}
+
+/*
+ * Directory A-Z List
+ */
+.js-form-item-field-gw-person-department-target-id {
+  width: 20rem;
+}
+.gw-directory .form-control {
+  border-radius: 0;
+}
+.gw-directory .view-filters{
+  text-align: center;
+}
+/* .form-item-custom-az-filter { */
+#edit-custom-az-filter label.option,
+#edit-custom-az-filter label.option:hover{
+  padding: .4rem .6rem .3rem .6rem;
+}
+fieldset[data-drupal-selector="edit-custom-az-filter"] .form-control{
+  border: none;
+}
+#edit-custom-az-filter input[type=radio]:checked + label {
+  color: var(--GW_DarkBlue)!important;
+  background-color: #d8d8d8!important;
+  font-family:"AvenirNext-Demi",Helvetica,Arial,sans-serif;
+}
+
+/*
+ * Article card sizes
+ */
+.gw-article-card {
+  margin-bottom: 1em;
+}
+
+/*
+ * Event card sizes
+ */
+.gw-events-overview .event-card-holder-col-md-10 {
+  height: auto;
+  background-color: rgba(255,0,0,0.1);
+}
+
+/*
+ * Person card sizes
+ */
+.gw-events-overview .event-card-holder-col-md-10 {
+  height: auto;
+  background-color: rgba(255,0,0,0.1);
+}
+
+/*
+ * Directory card sizes
+ */
+ .gw-directory-overview  {
+  margin-bottom: 1em;
+}
+
+/*
+ * Inline views exposed form
+ */
+.view-gw_directory .form--inline .form-item {
+  display: inline;
+  float: none;
+}
+.view-gw_directory .form--inline .form-actions {
+  display: inline-block;
+}

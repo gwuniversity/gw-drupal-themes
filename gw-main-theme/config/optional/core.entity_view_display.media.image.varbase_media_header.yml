@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.varbase_media_header
+    - field.field.media.image.field_media_image
+    - field.field.media.image.field_media_in_library
+    - media.type.image
+    - responsive_image.styles.de2e_standard
+  module:
+    - responsive_image
+_core:
+  default_config_hash: 5oUFN7OaC70hbI79073psZDo7h4Ws0oklmgCaWB8_b0
+id: media.image.varbase_media_header
+targetEntityType: media
+bundle: image
+mode: varbase_media_header
+content:
+  field_media_image:
+    weight: 0
+    label: hidden
+    settings:
+      responsive_image_style: de2e_standard
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+    region: content
+hidden:
+  addtoany: true
+  created: true
+  field_media_in_library: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

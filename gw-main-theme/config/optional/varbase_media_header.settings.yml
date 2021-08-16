@@ -1,0 +1,11 @@
+varbase_media_header_settings:
+  node:
+    gw_advanced_page: gw_advanced_page
+    gw_basic_page: gw_basic_page
+    gw_alert: 0
+    gw_article: 0
+    gw_event: 0
+    gw_gallery: 0
+    gw_person: 0
+    landing_page: 0
+    varbase_heroslider_media: 0

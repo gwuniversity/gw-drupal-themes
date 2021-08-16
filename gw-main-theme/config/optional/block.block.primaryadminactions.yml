@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  theme:
+    - gw_main_theme
+_core:
+  default_config_hash: bH15jZtwAo0gHdRrzk3cdVXB4_XywGdzCLooxEFEwiA
+id: primaryadminactions
+theme: gw_main_theme
+region: header
+weight: -6
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

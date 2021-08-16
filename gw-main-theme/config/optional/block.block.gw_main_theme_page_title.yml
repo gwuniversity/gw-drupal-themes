@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+  theme:
+    - gw_main_theme
+_core:
+  default_config_hash: 1f3SKPk8jtkxF__zNY6bZUle5rMoR5qi29oHJ9jjQ6A
+id: gw_main_theme_page_title
+theme: gw_main_theme
+region: header
+weight: -1
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      gw_alert: gw_alert
+      gw_person: gw_person
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'

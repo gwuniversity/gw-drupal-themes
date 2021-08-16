@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - searchblox
+  theme:
+    - gw_main_theme
+third_party_settings:
+  block_class:
+    classes: collapse
+id: searchbloxsearch
+theme: gw_main_theme
+region: navigation
+weight: 0
+provider: null
+plugin: searchblox_search
+settings:
+  id: searchblox_search
+  label: 'Searchblox Search'
+  provider: searchblox
+  label_display: '0'
+visibility: {  }

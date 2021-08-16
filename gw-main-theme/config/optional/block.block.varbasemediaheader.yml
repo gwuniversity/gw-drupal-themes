@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - varbase_media_header
+  theme:
+    - gw_main_theme
+id: varbasemediaheader
+theme: gw_main_theme
+region: hero_slider
+weight: -6
+provider: null
+plugin: varbase_media_header_block
+settings:
+  id: varbase_media_header_block
+  label: 'Varbase Media Header'
+  provider: varbase_media_header
+  label_display: '0'
+  vmh_node:
+    gw_advanced_page: field_media
+    gw_basic_page: field_media
+  vmh_media_view_mode: varbase_media_header
+  context_mapping: {  }
+visibility: {  }

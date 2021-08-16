@@ -1,0 +1,462 @@
+/* Webform CSS */
+
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+/*text fields*/
+.js-form-type-textfield, .js-form-type-webform-autocomplete, .js-form-type-email, .js-form-type-number, .js-form-type-tel, .js-form-type-url {
+  width: 100%;
+}
+.js-form-type-textarea {
+  width: 100%;
+}
+
+  /*
+* Text Fields
+*/
+.text-count-message {
+  color: var(--GW_DarkBlue);
+  margin-top: .5rem;
+  font-family: "AvenirNext-Regular", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+input.webform-counter-warning, input.form-text.webform-counter-warning, textarea.webform-counter-warning, textarea.form-textarea.webform-counter-warning {
+  border-color: #ced4da;
+  background: #fff;
+}
+textarea.webform-counter-warning:focus, textarea.form-textarea.webform-counter-warning:focus {
+  border-color: var(--GW_LightBlue);
+  background: #fff;
+}
+
+
+/*checkbox styles*/
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type=checkbox], input[type=radio] {
+    display: inline-block;
+    width: 1.3rem;
+    --active-inner: var(--GW_LightBlue);
+    --focus: 2px rgba(39, 94, 254, .3);
+    --border: #BBC1E1;
+    --border-hover: var(--GW_DarkBlue);
+    --background: var(--GW_LightBlue);
+    --disabled: #F6F8FF;
+    --disabled-inner: #E1E6F9;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    -webkit-transition: background .3s, border-color .3s, box-shadow .2s;
+    transition: background .3s, border-color .3s, box-shadow .2s;
+  }
+  label.option {
+    margin-top: 0;
+  }
+  input[type="checkbox"]:checked+* {
+    color: var(--GW_LightBlue);
+  }
+  input[type="radio"]:checked+* {
+    color: var(--GW_LightBlue);
+    -webkit-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+    -moz-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+    box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+  }
+  input[type="radio"]:checked {
+    background: var(--GW_LightBlue);
+    -webkit-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+    -moz-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+    box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+  }
+  input[type="checkbox"]:checked {
+    background: var(--GW_LightBlue);
+    -webkit-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+    -moz-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+    box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+  }
+  input[type="checkbox"]:checked:before {
+    font-family: 'FontAwesome';
+    content: "\f00c";
+    color: white;
+    font-size: .8rem;
+    margin-left: .3rem;
+  }
+}
+
+input[type=radio] {
+  border-radius: 2rem;
+  border-color: #979797;
+  -webkit-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+  -moz-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+  box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+}
+
+input[type='checkbox']:not(.switch) {
+  border-radius: 0;
+  border: 1px solid #979797;
+}
+
+input[data-drupal-selector="edit-checkboxes"] {
+  color: #4a4a4a;
+}
+
+
+
+  /*
+* Buttons
+*/
+div#edit-actions {
+  display: flex;
+}
+.webform-button--previous {
+  margin-right: .5rem;
+}
+.button.form-control {
+  width: 16rem;
+  margin-bottom: 1rem;
+}
+div#edit-actions, .webform-multiple-add.js-webform-multiple-add {
+  width: 20rem;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+}
+input.btn-primary.form-control:focus, input#edit-wizard-prev:active, input#edit-wizard-next:active, .button.button--primary.js-form-submit.form-submit.btn.btn-primary:active {
+  color: var(--GW_DarkBlue);
+  background: var(--GW_HoverBuff);
+  border: 1px solid var(--GW_HoverBuff);
+  /* box-shadow: 0 0 0 0.2rem rgba(3,61,90,.25); */
+}
+/*
+* Checkbox Buttons
+*/
+.webform-options-display-buttons-vertical {
+  width: 20%;
+}
+.webform-options-display-buttons-vertical .webform-options-display-buttons-wrapper {
+  margin: 5px;
+}
+.webform-options-display-buttons label.webform-options-display-buttons-label {
+  display: table-cell;
+  height: 100%;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #979797;
+  color: var(--GW_DarkGrey);
+  border-radius: 5px;
+  background-color: var(--GW_White);
+}
+/*selected button */
+.webform-options-display-buttons input:checked+label.webform-options-display-buttons-label {
+  color: var(--GW_White);
+  background: var(--GW_LightBlue);
+  border: 1px solid var(--GW_LightBlue);
+  -webkit-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+  -moz-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+  box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+}
+.form-control:focus {
+  color: #495057;
+  background-color: var(--GW_White);
+  border-color: var(--GW_LightBlue);
+  outline: 0;
+  box-shadow: none;
+}
+.webform-options-display-buttons input:hover+label.webform-options-display-buttons-label {
+  cursor: pointer;
+  -webkit-box-shadow: inset 0px 0px 0px 2px var(--GW_LightBlue);
+  -moz-box-shadow: inset 0px 0px 0px 2px var(--GW_LightBlue);
+  box-shadow: inset 0px 0px 0px 2px var(--GW_LightBlue);
+}
+/*outter glow*/
+.webform-options-display-buttons input:checked:focus+label.webform-options-display-buttons-label {
+  /* box-shadow: none; */
+  -webkit-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+  -moz-box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+  box-shadow: inset 0px 0px 0px 2px var(--GW_White);
+}
+
+ /*
+* Labels
+*/
+label {
+  font-family: "AvenirNext-Regular", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  /* color: var(--GW_DarkBlue); */
+  margin-bottom: .8rem;
+  margin-top: 1.5rem;
+}
+fieldset#edit-select-other {
+  margin-bottom: .8rem;
+  margin-top: 1rem;
+}
+label.option {
+  position: relative;
+  bottom: .8rem;
+  margin-left: .5rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+ /*
+* Help Tool Tips
+*/
+.webform-element-help {
+  font-family: "AvenirNext-Demi", Helvetica, Arial, sans-serif;
+  border: 2px solid var(--GW_Yellow);
+  background: var(--GW_Yellow);
+  color: var(--GW_DarkBlue);
+  box-shadow: 0 3px 3px -2px #0101016b;
+}
+.webform-element-help:focus, .webform-element-help:active, .webform-element-help:hover {
+  border: 2px solid var(--GW_DarkBlue);
+  background: var(--GW_DarkBlue);
+}
+.webform-element-help--title {
+  color: var(--GW_DarkBlue);
+  font-family: "AvenirNext-Demi", Helvetica, Arial, sans-serif;
+  margin: 0 0 0.2em 0;
+  font-size: 1em;
+}
+.webform-element-help--content {
+  color: var(--GW_DarkBlue);
+  font-family: "AvenirNext-Regular", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+}
+.tippy-content {
+  background-color: #fff;
+  border: 1px solid var(--GW_DarkBlue);
+  border-radius: 3px;
+  box-shadow: 0 3px 3px -2px #0101016b;
+}
+.tippy-arrow {
+  color: var(--GW_DarkBlue);
+  box-shadow: 0 3px 3px -2px #0101016b;
+}
+.webform-element-help:focus, .webform-element-help:active, .webform-element-help:hover {
+  cursor: help;
+}
+/*
+*Select Dropdown
+
+select:-internal-list-box option:checked:hover{
+background-color: red;
+}
+
+
+/*
+* Read More
+*/
+.webform-element-more--link {
+  margin-top: .5rem;
+}
+.webform-element-more--link:before {
+  content: "► ";
+  font-size: 0.8em;
+  color: var(--GW_DarkBlue);
+}
+
+
+
+@media screen and (min-width: 860px) {
+  .webform-element-description {
+    font-size: 1rem;
+  }
+  .webform-submission-form legend {
+    color: var(--GW_DarkBlue);
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  /*
+* Progress Bar
+*/
+  .progress-marker::before {
+    width: 35px;
+    height: 35px;
+    padding-bottom: 0;
+  }
+  .progress-marker::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -10;
+    top: 15px;
+    right: -12px;
+    width: 100%;
+  }
+  .webform-progress-tracker .progress-step.is-active span.progress-title {
+    display: flex;
+    flex-direction: column;
+  }
+  .progress-step.is-active .progress-marker::before {
+    background-color: var(--GW_LightBlue);
+  }
+  li.progress-step.is-active:hover .progress-marker::before {
+    background-color: var(--GW_LightBlue);
+    box-shadow: 0 0 0 4px var(--GW_LightBlue) inset;
+    color: var(--GW_White);
+  }
+  .webform-progress-tracker .progress-step.is-active:hover .progress-marker::before {
+    background-color: var(--GW_LightBlue);
+  }
+  .webform-progress-tracker .progress-step.is-complete .progress-marker::before, .webform-progress-tracker .progress-step.is-complete:hover .progress-marker::before, .webform-progress-tracker .progress-step.is-complete .progress-marker::after {
+    background-color: var(--GW_LightBlue);
+  }
+  .progress-step .progress-marker {
+    line-height: 5px;
+    font-size: 16px;
+  }
+  .webform-progress-tracker .progress-step.is-active .progress-title {
+    font-family: "AvenirNext-Regular", Helvetica, Arial, sans-serif;
+    color: var(--GW_LightBlue);
+  }
+  /*text fields*/
+  .js-form-type-textfield, .js-form-type-webform-autocomplete, .js-form-type-email, .js-form-type-number, .js-form-type-tel, .js-form-type-url {
+    width: 50%;
+  }
+  .js-form-type-textarea {
+    width: 80%;
+  }
+ 
+  /*
+* Scale Slider
+*/
+  /* .form-range.form-control#edit-range,
+.form-range.form-control#edit-range-with-numbers-to-the-right{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 14px;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+} */
+  .form-item-date-list-w-text-parts .form-control {
+    margin-right: 1rem;
+    margin-bottom: .5rem;
+  }
+  .form-date.form-control, .form-time.webform-time.form-control {
+    margin-right: 1rem;
+  }
+  input#edit-date-time-w-date-time-picker-time {
+    margin-left: .5rem;
+  }
+  span.ui-icon.ui-icon-circle-triangle-w::after {
+    font-family: 'FontAwesome';
+    content: "\f00c";
+    color: white;
+  }
+  /*
+* Vertical Radio Buttons
+*/
+  /* div#edit-checkboxes-buttons-vertical,
+.form-group.js-form-item.form-item.js-form-type-radio.form-item-radios-vertical-buttons.js-form-item-radios-vertical-buttons {
+  width: 40%;
+} */
+ 
+  /*
+* calendar
+*/
+  .ui-widget-header {
+    border: 1px solid #dddddd;
+    background-color: var(--GW_DarkBlue);
+    color: var(--GW_White);
+    font-weight: bold;
+  }
+  .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid var(--GW_UtilityBuff);
+    background: var(--GW_UtilityBuff);
+    color: var(--GW_DarkBlue);
+    font-family: "AvenirNext-Demi", Helvetica, Arial, sans-serif;
+  }
+  .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    border: 1px solid var(--GW_LightBlue);
+    background: var(--GW_LightBlue);
+    font-weight: normal;
+    color: var(--GW_White);
+  }
+  .ui-datepicker-calendar a.ui-state-default:hover {
+    border: 1px solid #999;
+    background: var(--GW_LightBlue);
+    color: var(--GW_White);
+  }
+  .ui-datepicker td span, .ui-datepicker td a {
+    display: block;
+    padding: .2em;
+    text-align: center;
+  }
+  .form-select.form-control {
+    margin-right: .5rem;
+  }
+  .form-text {
+    margin-top: 0;
+  }
+  input#edit-time-w-unlimited-values-allowed-add-more-items, input#edit-date-list-w-unlimited-values-allowed-add-more-items {
+    margin-top: 1rem;
+  }
+  input#edit-time-w-time-picker, input#edit-date-w-unlimited-values-allowed-items-0-item-, input#edit-date-default, input#edit-date-w-date-picker, input#edit-date-w-date-picker-and-date-picker-button, input#edit-time-defaults {
+    width: 20%;
+  }
+  /*
+* plus/minus buttons
+*/
+  .webform-multiple-table td input[type="image"]+input[type="image"] {
+    margin-left: 0;
+  }
+  .webform-multiple-table td input[type="image"] {
+    box-sizing: border-box;
+    width: 17px;
+    min-width: initial;
+    max-width: initial;
+    height: auto;
+    margin: 0;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding: 2px;
+    border: 2px solid #333;
+    border-radius: 50%;
+  }
+  a.ui-datepicker-next.ui-corner-all.ui-button.ui-state-active.ui-datepicker-next-hover {
+    background: white;
+  }
+  a.ui-datepicker-next.ui-corner-all.ui-button.ui-state-active:hover {
+    background: white;
+  }
+  /* input[data-drupal-selector="edit-date-time-w-date-time-picker-time"]{
+  margin:5rem;
+}
+input[data-drupal-selector="edit-date-time-w-date-time-picker-date"]{
+  margin-left:2rem;
+} */
+  .form-item-date-list-defaults-year, .form-item-date-list-defaults-month, .form-item-date-list-defaults-day, .form-item-date-list-defaults-hour, .form-item-date-list-defaults-minute {
+    margin-right: .4rem;
+  }
+  .webform-multiple-table .form-item+.form-item {
+    margin-top: 0;
+    margin-right: .4rem;
+  }
+  input[data-drupal-selector="edit-date-w-unlimited-values-allowed-add-submit"] {
+    margin-bottom: 1rem;
+  }
+  div#edit-checkboxes-side-by-side {
+    display: flex;
+  }
+  /*text fields*/
+  .js-form-type-textfield, .js-form-type-webform-autocomplete, .js-form-type-email, .js-form-type-number, .js-form-type-tel, .js-form-type-url {
+    width: 50%;
+  }
+  .js-form-type-textarea {
+    width: 80%;
+  }
+}
+

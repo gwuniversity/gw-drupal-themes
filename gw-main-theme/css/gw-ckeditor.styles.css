@@ -1,0 +1,74 @@
+.cke_combopanel {
+  width: 500px;
+}
+
+/* Varbase Bootstrap Paragraphs color overrides */
+.vbp_color_05 {
+  color: #fff;
+  background-color: #aa9868;
+}
+
+
+/* .cke_panel
+{
+    height: 300px !important;
+    width: 180px !important;
+} */
+
+/* .cke_format_panel
+{
+    height: 250px !important;
+    width: 300px !important;
+} */
+
+/*
+ * Gray background box behind text.
+ */
+.gray-box {
+  background: rgba(255,255,255,0.85);
+  outline: black;
+}
+
+/*
+ * Full bleed template.
+ * @see https://medium.com/@simonlidesign/an-elegant-way-to-break-the-bootstrap-container-2912628e4829
+ */
+ div.full-bleed-template {
+  width: 100vw;
+  position: relative;
+  left: calc(-1 * (100vw - 100%) / 2);
+  color: rbga(0,0,0,.6);
+}
+
+div.full-bleed-template .align-center {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+/* body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders p a,
+body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders span a {color: var(--GW_LightBlue);text-decoration: underline;}
+body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders span a.btn {color: var(--GW_White);text-decoration: none;}
+body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders span a.btn:hover,
+body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders span a.btn:focus {color: var(--GW_DarkBlue);text-decoration: none;}
+ */
+body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders p a:hover,
+body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders p a:focus{
+  color: var(--GW_Brown);text-decoration: underline;
+}
+
+body.cke_editable a {color: var(--GW_LightBlue);text-decoration: underline;}
+body.cke_editable a:hover,body.cke_editable a:focus{color: var(--GW_Brown);text-decoration: underline;}
+
+body.cke_editable a.btn {
+  text-decoration: none;
+}
+
+body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders p a.btn:hover, 
+body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders p a.btn:focus{
+  color: var(--GW_DarkBlue);
+  background: var(--GW_HoverBuff);
+  border-color: var(--GW_HoverBuff);
+  text-decoration: none;
+}

@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - purge_ui
+    - user
+  theme:
+    - gw_main_theme
+third_party_settings:
+  block_class:
+    classes: 'd-flex flex-row'
+id: purgethispage
+theme: gw_main_theme
+region: highlighted
+weight: 0
+provider: null
+plugin: purge_ui_block
+settings:
+  id: purge_ui_block
+  label: 'Purge this page'
+  provider: purge_ui
+  label_display: '0'
+  purge_block_id: e6c5af6d15d6864381c80c9c5dab492866024e16
+  description: ''
+  submit_label: 'Refresh this page'
+  type: url
+  execution: direct
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      editor: editor
+      content_admin: content_admin
+      site_admin: site_admin
+      administrator: administrator
+      super_admin: super_admin
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

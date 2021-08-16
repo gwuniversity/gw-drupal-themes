@@ -1,0 +1,85 @@
+# Define GW Main theme's library CSS and JS assets.
+
+# Global libraries.
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/theme.css: {}
+      #AniJs CSS.
+      css/anijs/anicollection.css: {}
+      # Enliven CSS.
+      css/enliven/enlivenem.css: {}
+
+# Navbar libraries.
+navbar-theme:
+  version: 1.x
+  css:
+    theme:
+      css/gw-navbar.css: {}
+
+global-scripts:
+  version: 1.x
+  js:
+    js/theme.js: {}
+    #AniJs JS.
+    js/anijs/anijs-min.js: {}
+    js/anijs/helpers/scrollreveal/anijs-helper-scrollreveal-min.js: {}
+    js/anijs/helpers/dom/anijs-helper-dom-min.js: {}
+    # Enliven JS.
+    js/enliven/enlivenem.tools.js: {}
+    js/enliven/enlivenem.min.js: {}
+    js/enliven/snap.svg-min.js: {}
+  dependencies:
+    - core/drupal.ajax
+    - particle/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.displace
+    - core/debounce
+    - core/jquery.once
+
+# Views specific libraries
+views:
+  css:
+    theme:
+      css/views.css:
+        preprocess: true
+  js:
+    js/views.js:
+      preprocess: true
+
+# Webform overrides.
+webform:
+  css:
+    theme:
+      css/webform.css:
+        preprocess: false
+
+# GW Gallery JS/CSS.
+gw_gallery:
+  css:
+    theme:
+      css/gw-gallery.css:
+        preprocess: true
+  js:
+    js/gw-gallery.js:
+      preprocess: false
+  dependencies:
+    - particle/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.displace
+
+# Override Varbase Media Header styles with local version
+media_header_styles:
+  css:
+    component:
+      css/components/media-header.component.css: { }
+
+# GW Event Styles
+gw_event:
+  css:
+    theme:
+      css/gw-event.css:
+        preprocess: true

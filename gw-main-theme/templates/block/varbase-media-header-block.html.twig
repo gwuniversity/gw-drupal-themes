@@ -1,0 +1,174 @@
+{#
+/**
+ * @file
+ * Varbase Media Header block.
+ *
+ * - $vmh_page_breadcrumbs: System Page breadcrumbs.
+ * - $vmh_page_title: System page title.
+ * - $vmh_background_media: Background media (Image, local or remote videos).
+ *
+ */
+#}
+
+{% if (header_style == 'media_header' or header_style == 'standard') and vmh_background_media %}
+
+{{ attach_library('gw_main_theme/media_header_styles') }}
+{{ attach_library('varbase_media_header/media_header_scripts') }}
+
+
+{% set alignment = header_align.value %}
+{% set show_header_info = header_info.0.value %}
+
+
+<style>
+
+h2.advancedHeroTitle{
+  font-family: 'AvenirNext-Light',Helvetica,Arial,sans-serif;
+  margin-bottom: 0;
+  font-size: 2rem;
+  color: #fff;
+}
+
+p.hero-link a {
+  color: #fff;
+}
+p.hero-link a:hover, p.hero-link a:focus{
+ text-decoration: none;
+ border-bottom: 1px dashed #fff;
+}
+
+p.hero-description {
+  font-family: 'AvenirNext-Light',Helvetica,Arial,sans-serif;
+  color: #fff;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+svg.svg-inline--fa {
+ color: #fff;
+ margin-left: .4rem;
+ margin-bottom: -.1rem;
+}
+
+/* Container holding the image and the text */
+.bp-image-container {
+  text-align:center;
+  position: relative;
+  width: 100%;
+}
+
+/* Image container background color */
+.bp-image-container-bg {
+  position: absolute;
+  bottom: 0;
+  width:100%;
+}
+
+/* Centered text */
+.bp-image-text-centered {
+  position: absolute;
+  bottom: 0;
+  left:0;
+  width: 100%;
+  padding: 1rem 6rem;
+  text-align: left;
+  background: rgb(3 60 90 / 85%);
+}
+
+/* Bottom left text */
+.bp-image-text-bottom-left {
+position: absolute;
+bottom: 0;
+left: 0;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+height: 34rem;
+color: #fff;
+width: 40%;
+text-align: left;
+padding: 0 2rem 1rem 2rem;
+background: rgb(3 60 90 / 85%);
+}
+
+/* Bottom right text */
+.bp-image-text-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 34rem;
+  color: #fff;
+  width: 40%;
+  text-align: left;
+  padding: 0 2rem 1rem 2rem;
+  background: rgb(3 60 90 / 85%);
+}
+</style>
+
+
+ {# <div class="bp-image-container">
+  {{ image }}
+  {% if info_enable %}
+    <div class="bp-image-container-bg">
+      <div class="{{ info_alignment }}">
+        <h2 class="advancedHeroTitle">{{ image_title }}</h2>
+        <p class="hero-description">{{ image_description }}</p>
+           <p class="hero-link">
+             <a href="{{ image_link_url }}">{{ image_link_title ? image_link_title : image_link_url }}</a>
+             <span> {{ image_link_icon|raw }} </span>
+           </p>
+      </div>
+    </div>
+  {% endif %}
+</div> #}
+
+
+<div class="container">
+  <div class="row">
+    <div class="vmh-content">
+      {# System Page breadcrumbs #}
+        <div class="vmh-breadcrumb">{{ vmh_page_breadcrumbs }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="vmh-container">
+
+  <div class="vmh-content-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="vmh-content bp-image-container">
+
+          {% if show_header_info %}
+
+            <div class="bp-image-container-bg">
+              <div class="{{ alignment }}">
+                <h2 class="advancedHeroTitle">{{ vmh_page_title }}</h2>
+                <p class="hero-description">{{ header_summary }}</p>
+              </div>
+            </div>
+
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vmh-background">
+    {# Background media #}
+    {% if vmh_background_media %}
+      {{ vmh_background_media }}
+    {% endif %}
+  </div>
+
+</div>
+
+{% else %}
+
+<div></div>
+
+{% endif %}

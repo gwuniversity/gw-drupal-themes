@@ -1,0 +1,355 @@
+{#
+/**
+ * @file
+ * Theme override to display the GW Event type.
+#}
+
+{# Attach the css/js libraries to this page #}
+{{ attach_library('gw_main_theme/gw_event') }}
+
+{# Classes #}
+{% set classes = ['ml-5',] | sort | join(' ') | trim %}
+{% set container_class = container ? 'container' : (container_fluid ? 'container-fluid') %}
+{% set media_entity_type = node.field_gw_event_featured_media.entity.bundle() %}
+
+{# If the media type is remote video with oembed #}
+{% if media_entity_type == "remote_video" %}
+
+  {# Video URL #}
+  {% set video_url = node.field_gw_event_featured_media.entity.field_media_oembed_video.value %}
+
+{% else %}
+
+  {# Media #}
+  {% set image_uri = node.field_gw_event_featured_media.entity.field_media_image.entity.uri.value %}
+
+  {# Generate Image URI #}
+  {% if image_uri == '/' or image_uri is null %}
+
+    {# Default Image #}
+    {% set event_media = '/' ~ directory ~ '/images/default-event-image.jpg'  %}
+
+    {# Image Alt Text #}
+    {% set event_media_alt = '' %}
+
+    {# Image Title #}
+    {% set event_media_title = '' %}
+
+  {% else %}
+
+    {# Image URI #}
+    {% set event_media = file_url(image_uri) %}
+
+    {# Image Alt Text #}
+    {% set event_media_alt = node.field_gw_event_featured_media.entity.field_media_image.alt %}
+
+    {# Image Title #}
+    {% set event_media_title = node.field_gw_event_featured_media.entity.field_media_image.title %}
+  {% endif %}
+
+{% endif %}
+
+{# Main Event Content #}
+<main class="main-content">
+
+  {# Node Content #}
+  {% block content %}
+
+    <div class="container gw-event">
+
+      {# Event Title #}
+      {% block event_header %}
+        <h2>{{ node.title[0].value }}</h2>
+        {% if node.field_gw_event_subtitle %}
+          {# Event Subtitle #}
+          <h3>{{ node.field_gw_event_subtitle[0].value }}</h3>
+        {% endif %}
+      {% endblock event_header %}
+
+      {# Content Row #}
+      <div class="row">
+
+        {# When #}
+        <div class="col-5">
+          <div class="gw-event-when">
+            {% set limit = 4 %}
+            {% set begin = 0 %}
+            {% include '@atoms/gw-when/_gw-when.twig' with {
+              when: event_dates,
+              addtocalendar: FALSE,
+              begin: begin,
+              limit: limit,
+              inline: TRUE
+              }
+            %}
+          </div>
+
+          {% if event_dates|length > limit %}
+            <a class="" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              See more dates
+            </a>
+            <div class="collapse" id="collapseExample">
+              {% include '@atoms/gw-when/_gw-when.twig' with { when: event_dates, addtocalendar: FALSE, begin: begin + limit } %}
+            </div>
+          {% endif %}
+        </div>
+
+        {# Admission #}
+        <div class="col-2">
+          <div class="gw-event-admission">
+            {% include '@atoms/gw-admission/_gw-admission.twig' with {
+                label: FALSE,
+                admission_text: node.field_gw_event_admission_price[0].value,
+            } %}
+            {% if node.field_gw_event_audience|length %}
+             <em>Open to {% for audience in node.field_gw_event_audience %} {{ audience.value }}{% if not loop.last %}, {% endif %}{% endfor %}.</em>
+            {% endif %}
+          </div>
+        </div>
+
+        {# Call to action button #}
+        <div class="col-5 text-right">
+          {% if node.field_gw_event_call_to_action.0 %}
+            <a href="{{ node.field_gw_event_call_to_action.0.uri }}">
+              <div class="gw-event-call-to-action">
+                {% include '@atoms/button/_button.twig' with {
+                    font_awesome: 'fa fa-envelope',
+                    button_text_color: 'GW_Blue',
+                    button_outline: TRUE,
+                    button_color: 'secondary',
+                    button_text_emphasis: TRUE,
+                    button_link: node.field_gw_event_call_to_action.0.uri,
+                    button_text: node.field_gw_event_call_to_action.0.title
+                } %}
+              </div>
+            </a>
+          {% endif %}
+        </div>
+
+        {# 9 Columns #}
+        <div class="col-12">
+
+          {% block event_content %}
+
+            {# Media Header Image #}
+            {% block media_header %}
+
+            {% if media_entity_type == 'remote_video' %}
+
+              {% include '@molecules/gw-media-header/_gw-media-header.twig' with {
+                type: 'video',
+                media: {
+                  media_type: 'remote_video',
+                  variant: 'overlay',
+                  src: video_url,
+                  header: '',
+                  lead: '',
+                  autoplay: FALSE,
+                }
+               } %}
+
+            {% else %}
+
+              {% include '@molecules/gw-media-header/_gw-media-header.twig' with {
+                  type: 'image',
+                  image: {
+                    media_type: 'image',
+                    variant: 'primary',
+                    src: event_media,
+                    alt: event_media_alt,
+                    title: event_media_title,
+                  },
+                  image_classes: image_classes
+                } %}
+
+              {% endif %}
+
+          {# Media Caption #}
+          <p>
+            <em>{{ content.field_gw_event_media_caption }}</em>
+          </p>
+
+            {% endblock media_header %}
+          <br>
+
+        {% endblock event_content %}
+        </div>
+        {# /9 Columns #}
+
+</div>
+
+<div class="row">
+
+        <div class="col-9">
+          {# Body Content #}
+          {{ content.field_gw_event_body }}
+
+          {# Call to action button #}
+          {% if node.field_gw_event_call_to_action.0 %}
+            <a href="{{ node.field_gw_event_call_to_action.0.uri }}">
+              <div class="gw-event-call-to-action">
+                {% include '@atoms/button/_button.twig' with {
+                    font_awesome: 'fa fa-envelope',
+                    button_text_color: 'GW_Blue',
+                    button_outline: TRUE,
+                    button_color: 'secondary',
+                    button_text_emphasis: TRUE,
+                    button_link: node.field_gw_event_call_to_action.0.uri,
+                    button_text: node.field_gw_event_call_to_action.0.title
+                } %}
+              </div>
+            </a>
+          {% endif %}
+
+        </div>
+
+        {# 3 Columns #}
+        <div class="col-3">
+
+          {# Location #}
+          <div class="gw-event-where">
+            <strong>Where</strong>
+
+            {# Address #}
+            {% for address in gw_event_addresses %}
+              {% include '@atoms/gw-address/_gw-address.twig' with {
+                main: node.field_gw_event_address_name[0].value ? node.field_gw_event_address_name[0].value : null,
+                street_1: address.street_1,
+                street_2: address.street_2,
+                city: address.city,
+                state: address.state,
+                zip: address.zip,
+              }%}
+            {% endfor %}
+
+            {% if node.field_gw_event_room_number[0].value %}
+              {# Room #}
+              <div class="gw-event-where-room">
+                <span class="text-GWBlue">Room: {{ node.field_gw_event_room_number[0].value }}</span>
+              </div>
+            {% endif %}
+
+          </div>
+
+          {% set address_title = gw_event_addresses.0.organization ? gw_event_addresses.0.organization : gw_event_addresses.0.street_1 %}
+
+          {% if node.field_gw_event_geofield[0].lat and gw_event_addresses.0.street_1 %}
+            {# Google Map #}
+            <div class="gw-event-mapit">
+              <a href="https://www.google.com/maps/search/?api=1&query={{ node.field_gw_event_geofield[0].lat }},{{ node.field_gw_event_geofield[0].lon }}&query_place_id={{ address_title|url_encode }}"><span class=""></span>Mapit</a>
+            </div>
+          {% endif %}
+
+          {% if node.field_gw_event_audience|length %}
+
+            <hr class="small-event"><br><br>
+            {# Admission #}
+            <div class="gw-event-admission">
+              {% include '@atoms/gw-admission/_gw-admission.twig' with {
+                  label: TRUE,
+                  admission_text: node.field_gw_event_admission_price[0].value,
+              } %}
+              <em>Open to {% for audience in node.field_gw_event_audience %} {{ audience.value }}{% if not loop.last %}, {% endif %}{% endfor %}.</em>
+            </div>
+          {% endif %}
+
+          <hr class="small-event"><br><br>
+
+          {# Event Hashtags #}
+          {% if node.field_gw_event_hashtags_text.value %}
+            <div class="gw-event-hashtag">
+              <strong>Event Hashtags:</strong>
+              <em>{{ node.field_gw_event_hashtags_text.value }}</em>
+            </div>
+          {% endif %}
+
+          {# Social Media Block #}
+          <div class="gw-event-social">
+            {{ content.addtoany }}
+          </div>
+
+          {# Offsite Event Link #}
+          {% if node.field_gw_event_offsite_link.value %}
+            <hr class="small-event"><br><br>
+            <div class="gw-event-link">
+              {% include '@atoms/gw-list/_gw-list.twig' with {
+                  font_awesome: 'fa fa-globe',
+                  list_label: "Event Link",
+                  list: node.field_gw_event_offsite_link.value,
+              } %}
+            </div>
+            <br>
+          {% endif %}
+
+          {# Other Event Links #}
+          {% if node.field_gw_event_link.value %}
+            <hr class="small-event"><br><br>
+            <div class="gw-event-links">
+              {% include '@atoms/gw-list/_gw-list.twig' with {
+                  font_awesome: 'fa fa-file',
+                  list_label: "Related Content",
+                  list: node.field_gw_event_link.value,
+              } %}
+            </div>
+            <br>
+          {% endif %}
+
+          {# Event Attachments #}
+          {% if node.field_gw_event_attachments.value %}
+            <div class="gw-event-attachments">
+              <div>
+                <strong>Related Downloads</strong>
+              </div>
+            {% for item in content.field_gw_event_attachments['#items'] %}
+              {% if loop.first %}
+                <span class="mr-2 fa fa-download gw-buff-icon"></span>
+              {% else %}
+                <span class="mr-2 fa fa-download gw-buff-icon-empty"></span>
+              {% endif %}
+              {{ item|view }}
+            {% endfor %}
+            </div>
+            <br>
+          {% endif %}
+
+        </div>
+        {# /3 Columns #}
+
+      <div class="row">
+
+        {# 10 Columns #}
+        <div class="col-12">
+
+          {% block event_footer %}
+            {# Tags #}
+            {% if tags %}
+              {% block tags %}
+                <br>
+                {% include '@molecules/gw-tags/_gw-tags.twig' with {
+                  tags: tags,
+                  tag_style: 'button',
+                  badge_pill: FALSE,
+                  badge_color: 'secondary'
+                 } %}
+              {% endblock tags %}
+            {% endif %}
+
+            {# Related Content #}
+            {% if related_content %}
+              <hr>
+              {% block article_related %}
+                {% include '@organisms/gw-related/_gw-related.twig' with { related_content: related_content } %}
+              {% endblock article_related %}
+            {% endif %}
+          {% endblock event_footer %}
+        </div>
+      </div>
+      {# /10 Columns #}
+
+    </div>
+    {# /Column Content #}
+
+  {% endblock content %}
+  {# /Node Content #}
+
+</main>

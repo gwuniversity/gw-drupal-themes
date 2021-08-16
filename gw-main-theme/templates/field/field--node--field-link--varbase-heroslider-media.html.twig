@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ * Overrides button link for the Varbase Heroslider.
+ * @see template_preprocess_field()
+ */
+#}
+
+{% set link_title = items.0.content['#title'] %}
+{% set link_uri = items.0.content['#url'].uri %}
+
+<div>
+  {{ link(link_title, link_uri, { 'class':['btn', 'btn-primary', 'btn-lg']} ) }}
+</div>
+

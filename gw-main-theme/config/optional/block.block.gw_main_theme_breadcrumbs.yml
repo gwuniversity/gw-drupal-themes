@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gw_main_theme
+_core:
+  default_config_hash: 5oFLuf0E15Nhm8NJMsNjHJCokFVBe2M2MG0au7smUKg
+id: gw_main_theme_breadcrumbs
+theme: gw_main_theme
+region: header
+weight: -4
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,18 @@
+{# extends @bootstrap_barrio/layout/block.html.twig
+/**
+ * @file
+ * Theme override for tabs.
+ */
+#}
+
+{% set container = theme.settings.fluid_container ? 'container-fluid' : 'container' %}
+
+{% block content %}
+  {% if content %}
+    <div class="{{ container }}">
+      <nav class="tabs" role="navigation" aria-label="{{ 'Tabs'|t }}">
+        {{ content }}
+      </nav>
+    </div>
+  {% endif %}
+{% endblock %}

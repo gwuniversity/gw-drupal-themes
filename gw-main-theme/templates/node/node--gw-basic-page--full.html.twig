@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Theme override to display a GW Basic Page.
+ *
+ * Available variables:
+ *
+ * @see template_preprocess_node()
+ */
+#}
+
+{# {% set classes = [
+  'ml-5',
+] | sort | join(' ') | trim %} #}
+
+{% set image_classes = [
+  'float-right'
+] | sort %}
+
+{% set container_class = container ? 'container' : (container_fluid ? 'container-fluid') %}
+
+<main class="main-content">
+
+  {# Node Content #}
+  {% block content %}
+
+    <article{{ (BUILD_TARGET == 'pl') ? ' class=' ~ classes : attributes.addClass(classes) }}>
+
+      {# content #}
+        {# Title #}
+        {% if node.field_display_page_title.value %}
+          <h1>
+            {{ node.getTitle() }}
+          </h1>
+        {% endif %}
+
+        {{ content }}
+
+      {# /content#}
+
+    </article>
+
+  {% endblock content %}
+  {# /Node Content #}
+
+</main>

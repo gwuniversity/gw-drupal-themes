@@ -1,0 +1,13 @@
+/* GW Gallery CSS */
+
+.slick-gallery img {
+  /* height: calc(50vh - 100px); */
+  width: auto;
+  margin: 0 auto; /* it centers any block level element */
+}
+
+.slick-gallery-image-title {
+  text-align: center;
+  width: auto;
+  margin: 0 auto; /* it centers any block level element */
+}

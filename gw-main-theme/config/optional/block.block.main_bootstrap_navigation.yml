@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - menu_block
+  theme:
+    - gw_main_theme
+_core:
+  default_config_hash: nKQ_6qF4kVG7X0EHdPgg3HvEL4qBNCJIbfd-_eCoVts
+id: main_bootstrap_navigation
+theme: gw_main_theme
+region: navigation
+weight: -6
+provider: null
+plugin: 'menu_block:main'
+settings:
+  id: 'menu_block:main'
+  label: 'Main Bootstrap Navigation'
+  provider: menu_block
+  label_display: '0'
+  follow: false
+  follow_parent: child
+  level: 1
+  depth: 0
+  expand_all_items: true
+  parent: 'main:'
+  render_parent: false
+  suggestion: main
+  label_type: block
+  label_link: false
+visibility: {  }

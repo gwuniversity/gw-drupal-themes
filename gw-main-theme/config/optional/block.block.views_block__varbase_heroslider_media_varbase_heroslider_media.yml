@@ -1,0 +1,31 @@
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.varbase_heroslider_media
+  module:
+    - system
+    - views
+  theme:
+    - gw_main_theme
+_core:
+  default_config_hash: cRTYbX9sngwUEJqFr48oyWzbPM7X8vL7kCWQZqHxIGk
+id: views_block__varbase_heroslider_media_varbase_heroslider_media
+theme: gw_main_theme
+region: hero_slider
+weight: -5
+provider: null
+plugin: 'views_block:varbase_heroslider_media-varbase_heroslider_media'
+settings:
+  id: 'views_block:varbase_heroslider_media-varbase_heroslider_media'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: "<front>\r\n/home"
+    negate: false
+    context_mapping: {  }

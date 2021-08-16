@@ -1,0 +1,294 @@
+{#
+/**
+ * @file
+ * Theme override to display a person node, (full page view).
+ */
+ #}
+
+{# Set Variables #}
+{% set classes = ['ml-5',] | sort | join(' ') | trim %}
+{% set container_class = container ? 'container' : (container_fluid ? 'container-fluid') %}
+
+{# Get featured media and set variables #}
+{% if content.field_gw_person_featured_media['#object'] %}
+  {% set person_img_src = file_url(content.field_gw_person_featured_media[0]['#media'].field_media_image.entity.uri.value) %}
+  {% set person_img_alt = content.field_gw_person_featured_media[0]['#media'].field_media_image.alt %}
+  {% set has_image = 1 %}
+{% else %}
+  {% set person_img_src = '/' ~ directory ~ '/images/default-person-image.png'  %}
+  {% set person_img_alt = '' %}
+  {% set has_image = 0 %}
+{% endif %}
+
+<main class="main-content">
+  <div class="gw-person">
+
+  {# Node Content #}
+    {% block content %}
+
+      {# Person Header #}
+      {% include "@molecules/gw-person-header/_gw-person-header.twig" with {
+        person_img_src: person_img_src,
+        person_img_alt: person_img_alt,
+        full_name: gw_person_full_name,
+        credentials: gw_person_credentials ? gw_person_credentials|join(', ')|trim : FALSE,
+        official_title: node.field_gw_person_official_title[0].value,
+        department: node.field_gw_person_department[0].entity.name.value,
+        school: gw_person_school,
+        email: node.field_gw_person_email[0].value,
+        phone_office: node.field_gw_person_phone_office[0].value,
+        phone_mobile: node.field_gw_person_phone_mobile[0].value,
+        phone_fax: node.field_gw_person_phone_fax[0].value,
+        facebook_link: node.field_gw_person_social_facebook[0].uri,
+        facebook_name: node.field_gw_person_social_facebook[0].title,
+        twitter_link: node.field_gw_person_social_twitter[0].uri,
+        twitter_name: node.field_gw_person_social_twitter[0].title,
+        linkedin_link: node.field_gw_person_social_linkedin[0].uri,
+        linkedin_name: node.field_gw_person_social_linkedin[0].title,
+        instagram_link: node.field_gw_person_social_instagram[0].uri,
+        instagram_name: node.field_gw_person_social_instagram[0].title ,
+        youtube_link: node.field_gw_person_social_youtube[0].uri,
+        youtube_name: node.field_gw_person_social_youtube[0].title,
+        vimeo_link: node.field_gw_person_social_vimeo[0].uri,
+        vimeo_name: node.field_gw_person_social_vimeo[0].title,
+        web_link: node.field_gw_person_website[0].uri,
+        web_name: node.field_gw_person_website[0].title,
+        biography: node.field_gw_person_biography[0].value,
+        addresses: gw_person_campus_addresses,
+        has_image: has_image,
+        office: node.field_gw_person_building_title ? node.field_gw_person_building_title[0].value : FALSE,
+        suffix_text: node.field_gw_person_suffix_plaintext ? node.field_gw_person_suffix_plaintext : FALSE,
+      } %}
+
+      {# 1 Up Grid #}
+      {% embed '@atoms/grid/_grid-1-up.twig' with { container: true } %}
+        {# Person Bio #}
+        {% block column_1 %}
+          {{ content.field_gw_person_biography }}
+        {% endblock column_1 %}
+      {% endembed %}
+
+{# Begin pattern override #}
+
+{# Set content into arrays for display #}
+
+{% set nav_items = [] %}
+{% set nav_contents = [] %}
+
+{% for item in content.field_gw_person_info['#items'] %}
+
+  {% set nav_items_count = nav_items|length %}
+  {% set active_item = nav_items_count == 0 ? 'active' : '' %}
+  {% set active_content = nav_items_count == 0 ? 'active' : '' %}
+  {% set title = item.entity.field_gw_person_info_tab_title.value %}
+  {% set id = title|e|lower|replace({' ': '-'}) %}
+
+
+  {# {% set id = title|striptags|convert_encoding('UTF-8', 'HTML-ENTITIES') %} #}
+  {% set icon = item.entity.field_gw_person_info_tab_icon.value %}
+  {% set text = item.entity.field_gw_person_info_tab_text.value %}
+  {% set text_field = item.entity.field_gw_person_info_tab_text %}
+
+
+  {% set nav_item = {
+    'nav_item_text' : title,
+    'nav_item_link_other_classes' : { active_item },
+    'nav_item_id' : id  ~ '-tab',
+    'nav_item_link' : '#' ~ id,
+    'nav_item_fa_icon' : icon,
+  } %}
+
+  {% set nav_items = nav_items|merge([nav_item]) %}
+
+  {% set nav_content = {
+    'nav_content_id' : id,
+    'nav_content_text' : text,
+    'nav_content_text_field' : text_field,
+    'nav_content_active' : active_content,
+    'nav_content_index' : '#' ~ loop.index,
+    'nav_content_title': title,
+    'nav_item_fa_icon' : icon,
+  } %}
+
+  {% set nav_contents = nav_contents|merge([nav_content]) %}
+
+{% endfor %}
+
+
+{% set nav_item_classes = [] %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <div class="gw-person-tab js-gw-person-tab-exists">
+        <hr>
+
+        <nav class="nav">
+          <ul class="nav nav-tabs" id="gw-person-person-tabs" role="tablist">
+
+            {% for tab in nav_items %}
+
+              {# Variables #}
+              {% set nav_item_link = tab.nav_item_link | default('#') %}
+              {% set nav_item_text = tab.nav_item_text | default('#') %}
+              {% set nav_item_aria = (tab.nav_item_link_classes == 'active') ? 'aria-selected="true"' : 'aria-selected="false"' %}
+              {% set nav_item_fa_icon = tab.nav_item_fa_icon %}
+
+              {# Classes #}
+              {% set nav_item_link_classes = tab.nav_item_link_other_classes|default([])|merge([
+                'nav-link',
+              ]) | sort | join(' ') | trim %}
+
+              {# JS Attributes #}
+              {% set js_attributes = [
+                'id=' ~ tab.nav_item_id,
+                'data-toggle=tab',
+                'role=tab',
+                'aria-controls=' ~ tab.nav_item_id,
+              ] | sort | join(' ') | trim %}
+
+              {# List item data #}
+              <li class="nav-item gw-nav-item">
+                <a class="{{ nav_item_link_classes }}" href="{{ nav_item_link }}" {{ js_attributes }} {{ nav_item_aria }}>
+                  {% if nav_item_fa_icon is not empty %}
+                    <span class="gw-tab-icon fa {{ nav_item_fa_icon }} fa-2x"></span>
+                  {% else %}
+                    <span class="gw-tab-icon-empty fa fa-book fa-2x"></span>
+                  {% endif %}
+                  <span class="gw-tab-text">{{ nav_item_text }}</span>
+                </a>
+              </li>
+
+            {% endfor %}
+
+            {# Only used in Nursing person types #}
+            {% if node.field_gw_person_tag_expertise[0].value %}
+            <li class="nav-item gw-nav-item">
+              <a class="nav-link" href="#expertise" aria-controls="expertise-tab" data-toggle="tab" id="expertise-tab" role="tab" aria-selected="&quot;false&quot;">
+                <span class="gw-tab-icon fa fa-book fa-2x"></span>
+                <span class="gw-tab-text">Expertise</span>
+              </a>
+            </li>
+            {% endif %}
+
+            {# Only used in Nursing person types #}
+            {% if node.field_gw_person_strengths[0].value %}
+              <li class="nav-item gw-nav-item">
+                <a class="nav-link" href="#strengths" aria-controls="strengths-tab" data-toggle="tab" id="strengths-tab" role="tab" aria-selected="&quot;false&quot;">
+                  <span class="gw-tab-icon fa fa-lightbulb fa-2x"></span>
+                  <span class="gw-tab-text">Strengths</span>
+                </a>
+              </li>
+            {% endif %}
+
+          </ul>
+        </nav>
+
+        <div class="tab-content" id="gw-person-person-tabs-content" role="tablist">
+
+          {% for item in nav_contents %}
+
+            {# Set 'show' to true if the index is 0 for the first item  #}
+            {% if item.nav_content_index == 0 %}
+              {% set show = "show" %}
+            {% else %}
+              {% set show = "" %}
+            {% endif %}
+
+            <div class="card rounded-0 border-primary border-left-0 border-right-0 border-top-0 tab-pane fade show {{ item.nav_content_active }}" id="{{ item.nav_content_id }}" role="tabpanel" aria-labelledby="tab-{{ item.nav_content_id }}">
+
+              <div class="card-header p-0 my-3" role="tab" id="heading-{{ nav_content_id }}">
+                <span class="mb-0 accordion-icon">
+                  <a data-toggle="collapse" class="d-flex align-items-center" href="#collapse-{{ item.nav_content_id }}"  aria-controls="collapse-{{ item.nav_content_id }}">
+
+                    {% if item.nav_content_fa_icon is not empty %}
+                      <span class="gw-tab-icon fa {{ item.nav_content_fa_icon }} fa-2x mr-3"></span>
+                    {% else %}
+                      <span class="gw-tab-icon-empty fa fa-book fa-2x mr-3"></span>
+                    {% endif %}
+
+                    {{ item.nav_content_title }}
+                  </a>
+                </span>
+              </div>
+
+              <div id="collapse-{{ item.nav_content_id }}" class="collapse {{ show }}" role="tabpanel" data-parent="#gw-person-person-tabs-content" aria-labelledby="heading-{{ item.nav_content_id }}">
+                <div class="card-body p-0">
+
+                    {% if item.nav_content_text_field.value %}
+
+                      {% set body = {
+                          '#type':   'processed_text',
+                          '#text':    item.nav_content_text_field.value,
+                          '#format':  item.nav_content_text_field.format,
+                        } %}
+
+                      {{ body }}
+
+                    {% endif %}
+
+                </div>
+              </div>
+
+            </div>
+
+          {% endfor %}
+
+            {# Only used in Nursing person types #}
+            {% if content.field_gw_person_strengths %}
+              <div class="card rounded-0 border-primary border-left-0 border-right-0 border-top-0 tab-pane fade" id="strengths" role="tabpanel" aria-labelledby="tab-strengths">
+                <div class="card-header p-0 my-3" role="tab" id="heading-strengths">
+                  <span class="mb-0 accordion-icon">
+                    <a data-toggle="collapse" class="d-flex align-items-center" href="#collapse-strengths" aria-controls="collapse-strengths">
+                      <span class="gw-tab-icon-empty fa fa-lightbulb fa-2x mr-3"></span>
+                      Strengths
+                    </a>
+                  </span>
+                </div>
+                <div id="collapse-strengths" class="collapse show" role="tabpanel" data-parent="#gw-person-person-tabs-content" aria-labelledby="heading-strengths">
+                  <div class="card-body p-0">
+                    {{ content.field_gw_person_strengths }}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+
+            {# Only used in Nursing person types #}
+            {% if content.field_gw_person_tag_expertise %}
+              <div class="card rounded-0 border-primary border-left-0 border-right-0 border-top-0 tab-pane fade" id="expertise" role="tabpanel" aria-labelledby="tab-expertise">
+                <div class="card-header p-0 my-3" role="tab" id="heading-expertise">
+                  <span class="mb-0 accordion-icon">
+                    <a data-toggle="collapse" class="d-flex align-items-center" href="#collapse-expertise" aria-controls="collapse-expertise">
+                      <span class="gw-tab-icon-empty fa fa-book fa-2x mr-3"></span>
+                      Expertise
+                    </a>
+                  </span>
+                </div>
+                <div id="collapse-expertise" class="collapse show" role="tabpanel" data-parent="#gw-person-person-tabs-content" aria-labelledby="heading-expertise">
+                  <div class="card-body p-0">
+                    {{ content.field_gw_person_tag_expertise }}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+
+        </div>
+
+      </div>
+
+      {# Tags #}
+      {% include '@molecules/gw-tags/_gw-tags.twig' with { tags: tags } %}
+
+    {% endblock %}
+  {# /Node Content #}
+
+    </div>
+  </div>
+</div>
+
+
+
+
+  </div>
+</main>

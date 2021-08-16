@@ -1,0 +1,21 @@
+/* GW Event CSS */
+
+.gw-event-call-to-action-head {
+  float: right;
+}
+
+.gw-buff-icon {
+  color: #aa9868;
+}
+
+.gw-buff-icon-empty {
+  opacity: 0;
+}
+
+hr.small-event {
+  width: 78px;
+  border: solid 1px #aa9868;
+  float: left;
+  clear: both;
+  display: block;
+}

@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ *
+ * Overrides for Varbase Heroslider Media.
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{# Add a style based on the hero slider size on the entityqueue.
+   This adds a class to the slick carousel slide.
+ #}
+
+{% if hero_slider_size and hero_slider_size > 0 %}
+  <style>
+    .varbase-heroslider-media .node--type-varbase-heroslider-media {
+        min-height: {{ hero_slider_size }}px;
+        max-height: {{ hero_slider_size }}px;
+        max-width: 1600px;
+    }
+  </style>
+{% endif %}
+
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    <div{{ content_attributes.addClass('content') }}>
+      {{ content }}
+    </div>
+  {% endblock %}
+</div>

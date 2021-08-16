@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.primary-navigation
+  module:
+    - menu_block
+  theme:
+    - gw_main_theme
+id: primarynavigation
+theme: gw_main_theme
+region: primary_menu
+weight: 0
+provider: null
+plugin: 'menu_block:primary-navigation'
+settings:
+  id: 'menu_block:primary-navigation'
+  label: 'Primary Navigation'
+  provider: menu_block
+  label_display: '0'
+  follow: false
+  follow_parent: child
+  level: 1
+  depth: 0
+  expand: 0
+  parent: 'primary-navigation:'
+  suggestion: primary_navigation
+visibility: {  }

@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - menu_block
+  theme:
+    - gw_main_theme
+_core:
+  default_config_hash: XbC8c1zJfuy8knixZ_KGLmWWwM4E9OsqFvDjpE0qMtk
+id: mainnavigation
+theme: gw_main_theme
+region: primary_menu
+weight: 0
+provider: null
+plugin: 'menu_block:main'
+settings:
+  id: 'menu_block:main'
+  label: 'Main navigation'
+  provider: menu_block
+  label_display: '0'
+  follow: false
+  follow_parent: active
+  level: 2
+  depth: 0
+  expand: true
+  parent: 'main:'
+  suggestion: primary
+visibility: {  }

@@ -1,0 +1,65 @@
+{#
+/**
+ * @file
+ * Theme override to display a GW Program.
+ *
+ * Available variables:
+ *
+ * @see template_preprocess_node()
+ */
+#}
+
+{# {% set classes = [
+  'ml-5',
+] | sort | join(' ') | trim %} #}
+
+{% set image_classes = [
+  'float-right'
+] | sort %}
+
+{% set container_class = container ? 'container' : (container_fluid ? 'container-fluid') %}
+
+<main class="main-content">
+
+  {# Node Content #}
+  {% block content %}
+
+    <article{{ (BUILD_TARGET == 'pl') ? ' class=' ~ classes : attributes.addClass(classes) }}>
+
+      {# content #}
+        {# Title #}
+        {% if node.field_display_page_title.value %}
+          <h1>
+            {{ node.getTitle() }}
+          </h1>
+        {% endif %}
+
+        {{ content|without('field_gw_program_people', 'field_gw_program_departments', 'field_tags') }}
+
+      {# /content#}
+
+    </article>
+
+  {% endblock content %}
+  {# /Node Content #}
+
+<hr>
+
+  {% block people %}
+    <h3>Faculty/Staff</h3>
+    {{ content.field_gw_program_people }}
+  {% endblock people %}
+
+  {% block departments %}
+    <h3>Departments</h3>
+    {{ content.field_gw_program_departments }}
+  {% endblock departments %}
+
+  {% block tags %}
+    {{ content.field_tags }}
+  {% endblock tags %}
+
+
+</main>
+
+
