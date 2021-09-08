@@ -21,16 +21,17 @@
 
 {% set region = attributes.region %}
 
-{% if region == 'navigation' %}
+{% if region == 'navigation'%}
 
 {# Add special navigation libraries #}
-{{ attach_library('gw_main_theme/navbar-theme') }}
+
 
   {# Call the gw-multilevel-navbar pattern #}
   {% set items = items %}
   {% set with_search = with_search|default(TRUE) %}
   {% set with_brand = with_brand|default(TRUE) %}
   {% set brand_src = '/modules/custom/gwu_content_types/img/gw_mono_0_0.png' %}
+
 
   {% include '@organisms/gw-multilevel-navbar/_gw-multilevel-navbar.twig' with {
       items: items,
@@ -39,6 +40,19 @@
       brand_src: brand_src
     } %}
 
+{% elseif region == 'navigation_collapsible' %}
+{# Begin Mobile Nav #}
+
+  <div id="menu-container" class="hidden" style="display:none;">
+
+    {% set items = simplify_menu('main') %}
+    <ul id="mobile-nav-ul">
+      {% include "@gw_main_theme/menu/menu--mobile.html.twig" with {'items':items.menu_tree} only %}
+    </ul>
+
+  </div>
+
+{# End Mobile Nav #}
 {% else %}
 
 {% import _self as menus %}

@@ -1,0 +1,13 @@
+
+
+
+{% for item in items %}
+  <li>
+  <a href="{{ item.url }}">{{ item.text }}</a>
+  {% if item.submenu %}
+    <ul>
+      {% include "@gw_main_theme/menu/menu--mobile.html.twig" with {'items': item.submenu} %}
+    </ul>
+  {% endif %}
+  </li>
+{% endfor %}

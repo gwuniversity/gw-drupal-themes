@@ -46,48 +46,49 @@
     }
   {% endif %}
 
-h2.advancedHeroTitle{
+.carousel-inner h2.advancedHeroTitle{
   font-family: 'AvenirNext-Light',Helvetica,Arial,sans-serif;
   margin-bottom: 0;
   font-size: 2rem;
   color: #fff;
 }
 
-p.hero-link {
+.carousel-inner p.hero-link {
   padding-top: 1rem;
 }
 
-p.hero-link a {
+.carousel-inner p.hero-link a {
   color: #fff;
 }
 
-p.hero-link a:hover, p.hero-link a:focus{
+.carousel-inner p.hero-link a:hover, 
+.carousel-inner p.hero-link a:focus,
+.carousel-inner p.hero-link a:active{
  text-decoration: none;
  border-bottom: 1px dashed #fff;
 }
 
-p.hero-description {
+.carousel-inner p.hero-description {
   font-family: 'AvenirNext-Light',Helvetica,Arial,sans-serif;
   color: #fff;
   margin-top: .5rem;
   margin-bottom: .5rem;
 }
 
-.hero-link svg.svg-inline--fa {
+.carousel-inner .hero-link svg.svg-inline--fa {
  color: #fff;
  margin-left: .4rem;
  margin-bottom: -.1rem;
 }
 .carousel-indicators {
-    position: absolute;
     right: 0;
-    bottom: 11px;
+    bottom: 33px;
     width: 20%;
     margin: auto;
 }
 
 /* Container holding the image and the text */
-.bp-image-container {
+.carousel-inner .bp-image-container {
   text-align:center;
   position: relative;
   width: 100%;
@@ -95,14 +96,14 @@ p.hero-description {
 }
 
 /* Image container background color */
-.bp-image-container-bg {
+.carousel-inner .bp-image-container-bg {
   position: absolute;
   bottom: 0;
   width:100%;
 }
 
 /* Centered text */
-.bp-image-text-centered {
+.carousel-inner .bp-image-text-centered {
   position: absolute;
   bottom: 0;
   left:0;
@@ -113,7 +114,7 @@ p.hero-description {
 }
 
 /* Bottom left text */
-.bp-image-text-bottom-left {
+.carousel-inner .bp-image-text-bottom-left {
 position: absolute;
 bottom: 0;
 left: 0;
@@ -137,7 +138,7 @@ background: rgb(3 60 90 / 85%);
 } #}
 
 /* Bottom right text */
-.bp-image-text-bottom-right {
+.carousel-inner .bp-image-text-bottom-right {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -151,7 +152,7 @@ background: rgb(3 60 90 / 85%);
   padding: 0 2rem .7rem 2rem;
   background: rgb(3 60 90 / 85%);
 }
-.bp-image-text-bottom-right .hero-link{
+.carousel-inner .bp-image-text-bottom-right .hero-link{
  margin-left: 0;
 }
 
@@ -184,8 +185,9 @@ background: rgb(3 60 90 / 85%);
         <p class="hero-description">{{ image_description }}</p>
           {% if image_link_url %}
             <p class="hero-link">
-              <a href="{{ image_link_url }}">{{ image_link_title ? image_link_title : image_link_url }}</a>
-              <span> {{ image_link_icon|raw }} </span>
+              <a href="{{ image_link_url }}">{{ image_link_title ? image_link_title : image_link_url }}
+                <span> {{ image_link_icon|raw }} </span>
+              </a>
             </p>
            {% endif %}
       </div>

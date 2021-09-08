@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region div.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+
+{% if content %}
+  {#
+  The Navigation region requires our Nav wrapper, which we've removed from
+  block--system-menu-block.html.twig. This was done to ensure the content array
+  matches what Bootstrap 4 expects - an unordered list representing our menu and
+  the Search block.
+  #}
+<div id="region-collapsible">
+  {# Attach special js/css to get the nav to work as expected #}
+{{ content }}
+</div>
+
+{% endif %}

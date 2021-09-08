@@ -15,6 +15,34 @@
   --GW_HoverBuff:#d9d0bb ;
 }
 
+/*skip link*/
+.skip-link {
+  z-index: 50;
+  left: 0;
+  padding: .2rem 0;
+  -webkit-transform: unset;
+  -o-transform: unset;
+  transform: unset;
+  border-bottom-width: 0;
+  text-decoration: underline;
+  border-radius: 0;
+  color: var(--GW_White);
+  background: var(--GW_DarkGrey);
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.skip-link:hover, .skip-link:focus,.skip-link:active{
+  color: var(--GW_White);}
+
+.vmh-container .vmh-content-wrapper {
+ z-index: 0;
+ top: unset;
+}
+
 div#block-breadcrumbs {
   padding-left: 0;
 }
@@ -29,9 +57,57 @@ nav.tabs li a {
 nav.tabs li a:focus,nav.tabs li a:hover {
   color: var(--GW_DarkBlue);
 }
-/*refresh this page button*/
-section.main-content form {
-  margin: 0 2rem 2rem 2rem;
+
+/*button active state fix*/
+.gw-header-button:active,
+.btn:active{
+color: var(--GW_DarkBlue)!important;
+background: var(--GW_HoverBuff)!important;
+border: 2px solid var(--GW_HoverBuff)!important;
+text-decoration: none!important;
+}
+
+.purge-btn .btn{
+  border: 2px solid var(--GW_DarkBlue)!important;
+}
+
+.purge-btn .btn:hover,
+.purge-btn .btn:focus,
+.purge-btn .btn:active{
+  color: var(--GW_DarkBlue)!important;
+  background: var(--GW_HoverBuff)!important;
+  border: 2px solid var(--GW_HoverBuff)!important;
+  text-decoration: none!important;
+}
+
+.btn:focus,
+.gw-header-button:focus,
+.purge-btn .btn:focus{
+  box-shadow: 0 0 0 0.2rem rgb(41 89 115 / 50%)!important;
+}
+
+/*searcblox style overrides*/
+.search-form .btn:active {
+  color: var(--GW_DarkBlue)!important;
+  background: var(--GW_White)!important;
+  border: 2px solid var(--GW_DarkBlue)!important;
+  text-decoration: none;
+}
+button.btn.search-btn:active{
+  background: var(--GW_LightBlue)!important;
+  border: 1px solid var(--GW_LightBlue)!important;
+}
+
+.main-content li.pager__item--next a:hover,
+.main-content li.pager__item--next a:focus,
+.main-content li.page-item a:hover,
+li.page-item .page-link:hover,
+.main-content li.page-item a:focus,
+li.page-item .page-link:focus {
+  z-index: 0;
+}
+.page-item.active .page-link {
+  z-index: 0;
 }
 
 /*login screen*/
@@ -96,7 +172,7 @@ li.dropdown-item,
   text-decoration: none;
   background-color: transparent;
  }
- .navbar-side .dropdown-item:focus, 
+ .navbar-side .dropdown-item:focus,
  .navbar-side .dropdown-item:hover {
   text-decoration: none;
   background-color: transparent;
@@ -114,7 +190,7 @@ border-bottom: 1px solid #D9D0BB;
 .navbar-side .nav-item a:hover,
 .navbar-side .nav-item a:focus {
   color: var(--GW_DarkBlue);
-  background-color: #ededed; 
+  background-color: #ededed;
   -webkit-transition: all .3s;
   transition: all .3s;
 }
@@ -200,10 +276,10 @@ div.full-bleed-template {
  }
 
 
- nav#primary-nav-bar {
+ /* nav#primary-nav-bar {
   margin-left: -.1rem;
   margin-right: -.1rem;
-}
+} */
 
 /*
  * Footer
@@ -221,6 +297,11 @@ footer.footer.container {
 /*
 * Accordions
 */
+
+.ckeditor-accordion-container > dl dd {
+  padding: 0rem .4rem 1rem .4rem;
+}
+
 .ckeditor-accordion-container a.ckeditor-accordion-toggler{
 font-size: 1.2rem;
 font-family: "AvenirNext-Demi";
@@ -272,11 +353,11 @@ font-family: "AvenirNext-Demi";
   height: inherit;
   z-index: 0;
   top: 0;
-  left: -24px;    
+  left: -24px;
   box-sizing: border-box;
 }
 .ckeditor-accordion-container > dl dt > a > .ckeditor-accordion-toggle:before {
-  font-family: "Font Awesome 5 Free";
+  font-family: "FontAwesome";
   font-weight: 900;
   content: "\f0da";
   background: none;
@@ -304,8 +385,8 @@ font-family: "AvenirNext-Demi";
 /*
 * Tabs
 */
-.bootstrap-tabs .nav-tabs > li.active > a, 
-.bootstrap-tabs .nav-tabs > li.active > a:hover, 
+.bootstrap-tabs .nav-tabs > li.active > a,
+.bootstrap-tabs .nav-tabs > li.active > a:hover,
 .bootstrap-tabs .nav-tabs > li.active > a:focus {
   color: #555;
   cursor: default;
@@ -319,8 +400,8 @@ font-family: "AvenirNext-Demi";
 }
 
 /*active tab*/
-.bootstrap-tabs .nav-tabs > li.active > a, 
-.bootstrap-tabs .nav-tabs > li.active > a:hover, 
+.bootstrap-tabs .nav-tabs > li.active > a,
+.bootstrap-tabs .nav-tabs > li.active > a:hover,
 .bootstrap-tabs .nav-tabs > li.active > a:focus {
   color: var(--GW_LightBlue);
   border: 1px transparent;
@@ -344,7 +425,7 @@ font-family: "AvenirNext-Demi";
   font-family: "AvenirNext-Demi";
 }
 
-.bootstrap-tabs .nav > li > a:hover, 
+.bootstrap-tabs .nav > li > a:hover,
 .bootstrap-tabs .nav > li > a:focus{
   color: var(--GW_LightBlue);
   background-color: var(--GW_White);
@@ -450,7 +531,7 @@ div.background-style {
   color: var(--GW_white);
 }
 
-/* 
+/*
 .cke_widget_wrapper:hover>.cke_widget_element {
   outline: 2px solid #ffd25c;
   cursor: default;
@@ -462,10 +543,10 @@ div.background-style {
  /*light blue bg*/
 
  div.vbp_color_01 .liberator-statement-liberatorheavy-72,
- div.vbp_color_01 h2, 
- div.vbp_color_01 h3, 
- div.vbp_color_01 h4, 
- div.vbp_color_01 h5, 
+ div.vbp_color_01 h2,
+ div.vbp_color_01 h3,
+ div.vbp_color_01 h4,
+ div.vbp_color_01 h5,
  div.vbp_color_01 h6,
  div.vbp_color_01 .testimonial-heavy{
    color: var(--GW_white);
@@ -473,11 +554,259 @@ div.background-style {
 
  /*light dark bg*/
  div.vbp_color_02 .liberator-statement-liberatorheavy-72,
- div.vbp_color_02 h2, 
- div.vbp_color_02 h3, 
- div.vbp_color_02 h4, 
- div.vbp_color_02 h5, 
+ div.vbp_color_02 h2,
+ div.vbp_color_02 h3,
+ div.vbp_color_02 h4,
+ div.vbp_color_02 h5,
  div.vbp_color_02 h6,
  div.vbp_color_02 .testimonial-heavy{
    color: var(--GW_white);
  }
+
+
+ /*cookie compliance pop up*/
+ .eu-cookie-compliance-content{
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+ }
+ .eu-cookie-compliance-message {
+  float: left; /* LTR */
+  margin: 5px 5px 0 0;
+  max-width: 80%;
+  padding: 0 1rem;
+}
+
+.eu-cookie-compliance-buttons button {
+  font-family: "AvenirNext-Regular",Helvetica,Arial,sans-serif;
+  display: inline-block;
+  width: auto;
+  cursor: pointer;
+  border: solid 2px var(--GW_DarkBlue);
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 5px 12px;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+  font-weight: normal !important;
+  color: var(--GW_DarkBlue);
+  background-color: var(--GW_white);
+  background-image: none;
+}
+
+.eu-cookie-compliance-buttons button:hover,
+.eu-cookie-compliance-buttons button:focus,
+.eu-cookie-compliance-buttons button:active{
+font-family: "AvenirNext-Regular",Helvetica,Arial,sans-serif;
+background-color: #D9D0BB;
+border: 2px solid #D9D0BB;
+color: #033C5A;
+text-decoration: none;
+background-image:none;
+box-shadow: none;
+text-shadow:none;
+}
+button.decline-button.eu-cookie-compliance-default-button {display:none;}
+
+.eu-cookie-compliance-message p{
+  font-size: 1.125rem;
+  line-height: 1.5em;
+  letter-spacing: 0em;
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
+  font-style: normal;
+}
+.eu-cookie-compliance-message a {
+  text-decoration:none;
+  color: var(--GW_white);
+  border-bottom: 1px solid var(--GW_white);
+}
+.eu-cookie-compliance-message a:hover,
+.eu-cookie-compliance-message a:focus,
+.eu-cookie-compliance-message a:active{
+  border-bottom: 1px dashed var(--GW_white);
+}
+
+@media only screen and (max-width: 1320px) {
+  .eu-cookie-compliance-content{justify-content:center; max-width:95%;padding:0;}
+  .eu-cookie-compliance-message {width: 100%; margin-left:1rem;max-width: 85%; padding: 0;}
+  .eu-cookie-compliance-buttons {max-width: 100%}
+  .sliding-popup-bottom {padding: 1.5rem 0;}
+}
+
+/* @media only screen and (max-width: 865px) {
+.row.utility-links{
+  background: var(--GW_White);
+  height: 24px;
+}
+span.d-flex.align-items-center.nav-divider,
+button.btn.search-btn{
+  display: none!important;
+}
+} */
+
+/* Better Login remove forgot password link */
+#auth-box #bottom-part {display: none;}
+
+
+
+/*blue background templates*/
+div.row.blue-boxes {
+  background: var(--GW_DarkBlue);
+}
+div.row.blue-boxes p,
+div.row.blue-boxes h2,
+div.row.blue-boxes h3,
+div.row.blue-boxes h4,
+div.row.blue-boxes h5 {
+  color: var(--GW_White);
+}
+
+/*hr styles*/
+/* hr {
+
+} */
+
+
+/*-------mobile nav begins here------*/
+@media only screen and (min-width: 940px) {
+  #block-main-bootstrap-nav-mobile {
+    display: none;
+  }
+}
+@media only screen and (max-width: 941px) {
+  #primary-nav-bar{
+    display: none;
+  }
+}
+/*mobile nav bar*/
+.mean-container{
+  margin:0;
+}
+.mean-container .mean-bar{
+  background: var(--GW_LightBlue)!important;
+  font-size: 1rem;
+  line-height: 47px;
+}
+
+nav.mean-nav{
+  background: var(--GW_LightBlue)!important;
+}
+
+.mean-container .mean-nav ul li a {
+  display: block;
+  float: left;
+  width: 90%;
+  padding: 0 5%;
+  margin: 0;
+  text-align: left;
+  color: #fff;
+  /* border-top: 1px solid #383838;
+  border-top: 1px solid rgba(255,255,255,0.5); */
+  text-decoration: none;
+  text-transform: capitalize!important;
+}
+/* .mean-container a.meanmenu-reveal {
+  margin-right: 1.5rem;
+} */
+.mean-bar:before{
+  content: 'MENU';
+  color: var(--GW_White);
+  font-family: "AvenirNext-Regular",Helvetica,Arial,sans-serif;
+  position: absolute;
+  left: 0;
+  padding: 0 2%!important;
+  /* top: .9rem; */
+}
+
+/*bg of open nav*/
+.mean-container .mean-nav ul li a,
+.mean-container .mean-nav ul{
+  background: var(--GW_DarkBlue);
+}
+/*horizontal rule color for main nav*/
+.mean-container .mean-nav ul li li a {
+ border-top: 1px solid var(--GW_LightBlue)!important;
+}
+
+.mean-container .mean-nav ul li a {
+  padding: 0 2%!important;
+  width: 96%!important;
+  border-top: 1px solid var(--GW_LightBlue)!important;
+}
+/* + and - button */
+a.mean-expand.mean-clicked,
+.mean-container .mean-nav ul li a.mean-expand {
+  margin-top: 1px!important;
+  width: 45px!important;
+  height: 47px!important;
+  padding: 0px!important;
+  text-align: center!important;
+  position: absolute!important;
+  right: 0px!important;
+  /* top: 16!important; */
+  z-index: 0!important;
+  opacity: 1 !important;
+  font-weight: 700!important;
+  background: var(--GW_LightBlue)!important;
+  border: none !important;
+  border-left: 2px solid var(--GW_DarkBlue)!important;
+  border-bottom: none!important;
+}
+
+/*sets bg light blue of expanded items*/
+
+li.expanded-item > a, 
+.mean-bar li{
+  background: var(--GW_LightBlue)!important;
+}
+
+
+/* .mean-nav .navbar-side .dropdown-item {
+  max-width: 100%;
+  margin-left: .8rem;
+} */
+
+
+
+/*styles for indented links*/
+.mean-container .mean-nav ul li li a {
+  width: 92%!important;
+  margin-left: 1rem!important;
+  opacity: 1!important;
+  padding: 0 3%!important;
+}
+
+/* hover and touch state */
+.mean-nav li a:hover,
+.mean-nav li a:focus,
+.mean-nav li a:active   {
+  background: var(--GW_LightBlue)!important;
+  color: var(--GW_White)!important;
+}
+
+
+
+
+/* .mean-container .mean-nav ul li{
+  background: var(--GW_LightBlue)!important;
+} */
+
+
+/*utility link styles*/
+li.mean-utility-left a,
+li.mean-utility-right a {
+  background: var(--GW_UtilityBuff)!important;
+  color: var(--GW_DarkBlue)!important;
+  border-top:1px solid var(--GW_DarkBlue)!important;
+}
+/*-------end of mobile nav----*/
+
+
+
+button.navbar-toggler {
+  display: none;
+}

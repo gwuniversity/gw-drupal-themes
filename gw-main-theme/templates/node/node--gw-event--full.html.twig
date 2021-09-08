@@ -27,7 +27,8 @@
   {% if image_uri == '/' or image_uri is null %}
 
     {# Default Image #}
-    {% set event_media = '/' ~ directory ~ '/images/default-event-image.jpg'  %}
+    {# {% set event_media = '/' ~ directory ~ '/images/default-event-image.jpg'  %} #}
+    {% set event_media = '' %}
 
     {# Image Alt Text #}
     {% set event_media_alt = '' %}
@@ -110,19 +111,19 @@
         {# Call to action button #}
         <div class="col-5 text-right">
           {% if node.field_gw_event_call_to_action.0 %}
-            <a href="{{ node.field_gw_event_call_to_action.0.uri }}">
-              <div class="gw-event-call-to-action">
+              <div class="gw-event-call-to-action mb-4">
+                <a href="{{ node.field_gw_event_call_to_action.0.uri }}">
                 {% include '@atoms/button/_button.twig' with {
                     font_awesome: 'fa fa-envelope',
                     button_text_color: 'GW_Blue',
                     button_outline: TRUE,
-                    button_color: 'secondary',
+                    button_color: 'primary',
                     button_text_emphasis: TRUE,
                     button_link: node.field_gw_event_call_to_action.0.uri,
                     button_text: node.field_gw_event_call_to_action.0.title
                 } %}
-              </div>
-            </a>
+                </a>
+            </div>
           {% endif %}
         </div>
 
@@ -186,19 +187,19 @@
 
           {# Call to action button #}
           {% if node.field_gw_event_call_to_action.0 %}
-            <a href="{{ node.field_gw_event_call_to_action.0.uri }}">
-              <div class="gw-event-call-to-action">
+          <div class="gw-event-call-to-action my-4">
+              <a href="{{ node.field_gw_event_call_to_action.0.uri }}">
                 {% include '@atoms/button/_button.twig' with {
                     font_awesome: 'fa fa-envelope',
                     button_text_color: 'GW_Blue',
                     button_outline: TRUE,
-                    button_color: 'secondary',
+                    button_color: 'primary',
                     button_text_emphasis: TRUE,
                     button_link: node.field_gw_event_call_to_action.0.uri,
                     button_text: node.field_gw_event_call_to_action.0.title
                 } %}
-              </div>
-            </a>
+              </a>
+            </div>
           {% endif %}
 
         </div>
@@ -329,7 +330,7 @@
                   tags: tags,
                   tag_style: 'button',
                   badge_pill: FALSE,
-                  badge_color: 'secondary'
+                  badge_color: 'primary'
                  } %}
               {% endblock tags %}
             {% endif %}

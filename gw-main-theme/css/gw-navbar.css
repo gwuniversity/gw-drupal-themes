@@ -1,7 +1,7 @@
 
 /*--------Styles Begin Here---*/
 @media only screen and (max-width: 990px) {
-
+/* 
   button.navbar-toggler {
       border-color: transparent!important;
       margin-right: .5rem;
@@ -117,7 +117,7 @@
   .cta-btn{
       text-align: center!important;
       padding: .5rem 0;
-  }
+  } */
 
   /* .dropdown-toggle:after {
       display: inline-flex;
@@ -130,8 +130,8 @@
       border-left: .3em solid transparent;
   } */
 
-  .dropdown-toggle:after {
+  /* .dropdown-toggle:after {
      display: none!important;
-  }
+  } */
 
   }

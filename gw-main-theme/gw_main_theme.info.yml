@@ -24,8 +24,13 @@ regions:
 dependencies:
   - gwu_blocks
 
+libraries-override:
+  core/jquery: particle/jquery
+
 # Global libraries applied to every page.
 libraries:
+  - particle/core
+  - particle/bootstrap
   - gw_main_theme/global-styling
   - gw_main_theme/global-scripts
 

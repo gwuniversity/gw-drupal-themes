@@ -75,7 +75,8 @@
 
 {# Image URI #}
 {% if image_uri == '/' or image_uri is null %}
-  {% set article_media = '/' ~ directory ~ '/images/default-article-image.jpg'  %}
+  {# {% set article_media = '/' ~ directory ~ '/images/default-article-image.jpg'  %} #}
+  {% set article_media = ''  %}
 {% else %}
   {% set article_media = file_url(image_uri) %}
 {% endif %}

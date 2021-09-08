@@ -1,39 +1,36 @@
 // Theme Javascript
 
 (function($, Drupal) {
-
-
   // Create one time use variable.
   var initialized;
 
   /*
-   * Move the utility links to the navbar.
+   * Clone the utility links into the 'mean menu' mobile menu.
    */
-  function move_utility_links() {
-    // Check the window width.
-    var responsive_viewport = $(window).width();
-
-    // If the width is smaller than 577:
-    if (responsive_viewport < 577) {
-      // Remove the utility links, append them to the navbar.
-      $( ".gw-utility-links" ).detach().appendTo( "nav.gw-multilevel-navbar" );
-
-    }
-    else {
-      // Else, put them back.
-      $( ".gw-utility-links" ).detach().appendTo( "section.region-utility-links" );
-
-    }
+  function clone_utility_links() {
+    $( ".gw-utility-links-left li" ).clone().removeClass("list-inline-item").addClass('mean-utility-left').appendTo( "#mobile-nav-ul" );
+    $( ".gw-utility-links-right li" ).clone().removeClass("list-inline-item").addClass('mean-utility-right').appendTo( "#mobile-nav-ul" );
   }
 
+  /* clear the utility links out of the mobile menu. */
+  function clear_utility_links() {
+    $( "li.mean-utility-left" ).remove();
+    $( "li.mean-utility-right" ).remove();
+  }
+
+  /*
+   * Function that is run once and only once.
+   */
   function init() {
+
+    var moved = false;
+
+    $('#region-collapsible').hide();
+
     if (!initialized) {
 
       // Only run this code if initalized == true.
       initialized = true;
-
-      // Move the utility links.
-      move_utility_links();
 
       // Add the 'enlivenem' class to the children of any
       // div with the 'use-enliven' class.
@@ -43,18 +40,40 @@
       // to prevent flashing. Show it now that the class is applied.
       $( "div.svg-field" ).show();
 
-      // On window resize, run move_utility_links().
+
+      // First check if the window is going to be mobile, if so, clone.
+      if ($(window).width() < 940 ) {
+        $( ".utility-links" ).hide();
+          clone_utility_links();
+          moved = true;
+      }
+
+      // Then check if the window is resized. If so, show as appropriate.
       $(window).resize(function() {
-        move_utility_links();
+
+        if ($(window).width() < 940 ) {
+          $( ".utility-links" ).hide();
+          if (moved) {
+            clone_utility_links();
+            moved = false;
+          }
+        }
+         else {
+          $( ".utility-links" ).show();
+          if (!moved) {
+            clear_utility_links();
+            moved = true;
+           }
+          }
+
       });
 
     }
   }
 
-  // Main theme behavior.
+  // Main theme behavior, runs the once only init() function.
   Drupal.behaviors.gw_main_theme = {
     attach: function (context) {
-
       if (context !== document) {
         return;
       }
@@ -62,56 +81,25 @@
     }
   };
 
-  // // Sticky Nav behavior.
-  // Drupal.behaviors.sticky_nav = {
-  //   attach: function () {
-
-  //     // Scroll to 95 and add the fixed-top class.
-  //     // Toggle the hidden navbar brand button.
-  //     // Copy the call to action button into the nav.
-  //     $(window).on('scroll', function(){
-  //       if($(window).scrollTop()>=95 && !$('nav.gw-multilevel-navbar').hasClass('fixed-top')){
-  //           $( "nav.gw-multilevel-navbar" ).addClass('fixed-top');
-  //           $( "a.navbar-brand" ).toggle();
-  //           $( "button.gw-header-button" ).clone().appendTo( "nav.gw-multilevel-navbar" );
-  //           $( "div#block-breadcrumbs" ).toggle();
-  //           $( "#nav-search-form").insertAfter( "nav.gw-multilevel-navbar");
-  //       }
-  //       // Undo everything if unscrolled.
-  //       else if($(window).scrollTop()<95 && $('nav.gw-multilevel-navbar').hasClass('fixed-top')){
-  //          $( "nav.gw-multilevel-navbar" ).removeClass('fixed-top');
-  //          $( "a.navbar-brand" ).toggle();
-  //          $( "nav.gw-multilevel-navbar .gw-header-button" ).detach();
-  //          $( "div#block-breadcrumbs" ).toggle();
-  //       }
-  //   });
-
-  //   }
-  // };
-
-  /*
-   * Override bootstrap js to allow all navbar links to work.
-   */
-  $('.navbar-side a[href]').click(function() {
-      if (this.href) {
-        location.href = this.href;
+  // Search block toggle.
+  Drupal.behaviors.gw_main_theme_search = {
+    attach: function () {
+      $( ".search-btn" ).click(function() {
+        $('#block-searchbloxsearch').collapse('toggle');
+      });
     }
-  });
+  };
 
+  // Mean Menu.
+  Drupal.behaviors.gw_main_theme_mean_menu = {
+    attach: function () {
 
-  // Allow top level navbar links to link to their href.
-  // @see https://stackoverflow.com/a/29633934
-  // Drupal.behaviors.gw_main_theme_navbar_click = {
-  //   attach: function (context, settings) {
-  //     $('nav li.dropdown :first-child').on('click', function() {
-  //       var $a = $(this).attr('href');
-  //         if ($.length && $a) {
-  //           location.href = $a;
-  //         }
-  //       });
-  //     }
-  //   };
-
+      $('#menu-container').meanmenu({
+        meanMenuContainer: 'div#navbar-main',
+        meanScreenWidth: "940"
+      });
+    }
+  };
 
 
 }(jQuery, Drupal));

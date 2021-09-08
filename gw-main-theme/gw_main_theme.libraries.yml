@@ -6,10 +6,12 @@ global-styling:
   css:
     theme:
       css/theme.css: {}
-      #AniJs CSS.
+      # AniJs CSS.
       css/anijs/anicollection.css: {}
       # Enliven CSS.
       css/enliven/enlivenem.css: {}
+      # MeanMenu
+      css/meanmenu/meanmenu.css: {}
 
 # Navbar libraries.
 navbar-theme:
@@ -22,7 +24,8 @@ global-scripts:
   version: 1.x
   js:
     js/theme.js: {}
-    #AniJs JS.
+    js/main.js: {}
+    # AniJs JS.
     js/anijs/anijs-min.js: {}
     js/anijs/helpers/scrollreveal/anijs-helper-scrollreveal-min.js: {}
     js/anijs/helpers/dom/anijs-helper-dom-min.js: {}
@@ -30,6 +33,8 @@ global-scripts:
     js/enliven/enlivenem.tools.js: {}
     js/enliven/enlivenem.min.js: {}
     js/enliven/snap.svg-min.js: {}
+    # MeanMenu
+    js/meanmenu/jquery.meanmenu.js: {}
   dependencies:
     - core/drupal.ajax
     - particle/jquery

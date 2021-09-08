@@ -118,7 +118,7 @@
 {% endblock %}
 
 {# REGION: NAVIGATON #}
-{% if page.navigation or page.navigation_collapsible %}
+{% if page.navigation %}
   {% block navbar %}
     {%
       set navbar_classes = [
@@ -136,13 +136,6 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      {% if page.navigation_collapsible %}
-        <div id="navbar-collapse" class="navbar-collapse collapse">
-          <div class="navbar-nav ml-auto">
-            {{ page.navigation_collapsible }}
-          </div>
-        </div>
-      {% endif %}
       {% if container_navbar %}
         </div>
       {% endif %}
@@ -150,6 +143,12 @@
   {% endblock %}
 {% endif %}
 {# END REGION: NAVIGATON #}
+
+{# REGION: NAVIGATON COLLAPSIBLE #}
+{% if page.navigation_collapsible %}
+  {{ page.navigation_collapsible }}
+{% endif %}
+{# END REGION: NAVIGATON COLLAPSIBLE #}
 
 </header>
 
